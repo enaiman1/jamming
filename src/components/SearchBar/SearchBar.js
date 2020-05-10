@@ -1,17 +1,14 @@
-import React, { Component }from "react";
+import React, { Component } from "react";
 import './searchBar.css'
 
- class SearchBar extends Component{
+class SearchBar extends Component {
 
-  render(){
-    return(
-  <div className="SearchBar">
-  <input placeholder="Enter A Song, Album, or Artist" />
-  <button className="SearchButton">SEARCH</button>
-</div>
-    )
-  }
-  
+  render = () => <div className="SearchBar">
+                    <input placeholder="Enter A Song, Album, or Artist" />
+                    <button className="SearchButton">SEARCH</button>
+                  </div>
+
+
 }
 
 
