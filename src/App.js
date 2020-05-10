@@ -27,8 +27,10 @@ class App extends Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this)
+    this.savePlaylist = this.savePlaylist.bind(this)
   }
 
+  // this method from results to playlist
   addTrack = track => {
       let tracks = this.state.playlistTracks;
       // check to see if a matching id. if the track id matches an id that is already in our tracks array we will return
@@ -40,6 +42,7 @@ class App extends Component {
       this.setState({playlistTracks: tracks})
   }
 
+  // this method removes a saved song from the playlist
   removeTrack = track => {
       let tracks = this.state.playlistTracks;
       tracks = tracks.filter(currentTrack => currentTrack.id !== track.id )
@@ -47,7 +50,13 @@ class App extends Component {
       this.setState({playlistTracks: tracks})
   }
 
+  //this method allows users to change the playlist name
   updatePlaylistName = name => this.setState({playlistName: name})
+
+  savePlaylist () {
+    alert("thing method is linked")
+    const trackUris = this.state.playlistTracks.map(track => track.uri);
+  }
   
 
   
@@ -66,6 +75,7 @@ class App extends Component {
                               playlistTracks = { this.state.playlistTracks }
                               onRemove = { this.removeTrack }
                               onNameChange = { this.updatePlaylistName }
+                              onSave={ this.savePlaylist }
                             />
                           </div>
                       </div>
