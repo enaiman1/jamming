@@ -4,6 +4,8 @@ import SearchResults from './components/SearchResults/SearchResults';
 import Playlist from './components/Playlist/Playlist';
 import './App.css';
 
+import Spotify from './util/Spotify'
+
 
 class App extends Component {
 
@@ -11,17 +13,9 @@ class App extends Component {
     super(props);
 
     this.state = {
-        searchResults: [
-          {name: "song1", artist: "artist1", album: "album1", id: 1},
-          {name: "song2", artist: "artist2", album: "album2", id: 2},
-          {name: "song3", artist: "artist3", album: "album3", id: 3},
-        ],
-        playlistTracks: [
-          {name: "savedSong1", artist: "saveArtist1", album: "savedAlbum1", id: 4},
-          {name: "savedSong2", artist: "saveArtist2", album: "savedAlbum2", id: 5},
-          {name: "savedSong3", artist: "saveArtist3", album: "savedAlbum3", id: 6},
-        ],
-        playlistName: "playlistName",
+        searchResults: [],
+        playlistTracks: [],
+        playlistName: "My Playlist"
     }
 
     this.addTrack = this.addTrack.bind(this);
@@ -55,12 +49,20 @@ class App extends Component {
   updatePlaylistName = name => this.setState({playlistName: name})
 
   savePlaylist () {
-    alert("thing method is linked")
     const trackUris = this.state.playlistTracks.map(track => track.uri);
+    // after playlist is sent, we reset the playlist to a generic state
+    Spotify.savePlayList(this.state.playlistName, trackUris).then(() => {
+      this.setState({
+        playlistName: 'New Playlist',
+        playlistTracks: []
+      })
+    })
   }
 
   search(term){
-    console.log(term)
+    Spotify.search(term).then(searchResults => {
+      this.setState({searchResults: searchResults})
+    })
   }
   
 
