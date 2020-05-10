@@ -1,22 +1,24 @@
-import React, { Component } from 'react';
-import SearchBar from './components/SearchBar';
-import SearchResults from './components/SearchResults';
-import Playlist from './components/Playlist';
+import React, {Component} from 'react';
+import SearchBar from './components/SearchBar/SearchBar';
+import SearchResults from './components/SearchResults/SearchResults';
+import Playlist from './components/Playlist/Playlist';
 import './App.css';
 
 
 class App extends Component {
+
   constructor(props){
     super(props);
 
     this.state = {
       searchResults: [
-        {name: "song1", artist: "artist1", album: "album1", id: "id1"},
-        {name: "song2", artist: "artist2", album: "album2", id: "id2"},
-        {name: "song3", artist: "artist3", album: "album3", id: "id3"},
+        {name: "song1", artist: "artist1", album: "album1", id: 1},
+        {name: "song2", artist: "artist2", album: "album2", id: 2},
+        {name: "song3", artist: "artist3", album: "album3", id: 3},
       ]
     }
   }
+  
   render() {
     return (
       <div>
