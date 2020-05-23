@@ -14,6 +14,7 @@ class App extends Component {
       playlistTracks: [],
       playlistName: "My Playlist",
     };
+   
 
   }
 
@@ -36,6 +37,14 @@ class App extends Component {
 
     this.setState({ playlistTracks: tracks });
   };
+
+  playTrack = (track) =>{
+  let tracks = this.state.playlistTracks;
+  
+  if (tracks.find((playTrack) => playTrack.preview === track.preview)) {
+    return 
+  }
+  }
 
   //this method allows users to change the playlist name
   updatePlaylistName = (name) => this.setState({ playlistName: name });
@@ -68,6 +77,7 @@ class App extends Component {
           <SearchResults
             searchResults={this.state.searchResults}
             onAdd={this.addTrack}
+            onPlay={this.playTrack}
           />
           <Playlist
             playlistName={this.state.playlistName}
@@ -75,6 +85,7 @@ class App extends Component {
             onRemove={this.removeTrack}
             onNameChange={this.updatePlaylistName}
             onSave={this.savePlaylist}
+            onPlay={this.playTrack}
           />
         </div>
       </div>
