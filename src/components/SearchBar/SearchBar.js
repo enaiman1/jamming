@@ -8,7 +8,6 @@ class SearchBar extends Component {
     this.state = {
       term: "",
     };
-
   }
 
   handleClick = (event) =>
@@ -22,9 +21,7 @@ class SearchBar extends Component {
 
   search = () => this.state.term && this.props.onSearch(this.state.term);
 
-  handleTermChange = event =>this.setState({ term: event.target.value });
-
-  
+  handleTermChange = (event) => this.setState({ term: event.target.value });
 
   render = () => (
     <div className="SearchBar">
