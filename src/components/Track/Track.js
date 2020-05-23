@@ -7,16 +7,17 @@ class Track extends Component {
 
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
+   
     
   }
 
   /*this method that has been passed down to check if id is already there, 
       if it is not it will be added to our playlist and state will be updated */
-  addTrack = () => this.props.onAdd(this.props.track);
+  addTrack() {this.props.onAdd(this.props.track);}
 
   removeTrack = () => this.props.onRemove(this.props.track);
 
- 
+ playTrack = () => this.props.onPlay(this.props.track.preview)
 
   renderAction() {
     if (this.props.isRemoval) {
@@ -35,7 +36,7 @@ class Track extends Component {
   }
 
   renderPlay() {
-    return <button onClick={this.playTrack}>Play</button>;
+    return <audio src={this.playTrack}></audio>
   }
 
   render = () => (
@@ -46,8 +47,8 @@ class Track extends Component {
           {this.props.track.artist} | {this.props.track.album}
         </p>
       </div>
-      <button onClick={this.playTrack}>Play</button>
-      {this.renderAction()}
+      <button onClick={this.renderPlay}>Play</button>
+      {this.renderAction}
     </div>
   );
 }
