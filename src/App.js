@@ -14,8 +14,7 @@ class App extends Component {
       playlistTracks: [],
       playlistName: "My Playlist",
     };
-   
-
+    this.audio = document.createElement('audio')
   }
 
   // this method from results to playlist
@@ -38,12 +37,16 @@ class App extends Component {
     this.setState({ playlistTracks: tracks });
   };
 
-  playTrack = (track) =>{
-  let tracks = this.state.playlistTracks;
-  
-  if (tracks.find((playTrack) => playTrack.preview === track.preview)) {
-    return 
-  }
+  playTrack = (track) => {
+    if(track.preview === null){
+      alert("demo is unaviable")
+    }
+
+    this.audio.src = track.preview
+    console.log(`this is from track: ${track.name}`)
+    this.audio.load()
+    this.audio.play()
+    
   }
 
   //this method allows users to change the playlist name
@@ -63,6 +66,7 @@ class App extends Component {
   search = (searchTerm) => {
     Spotify.search(searchTerm).then((results) => {
       this.setState({ searchResults: results });
+      console.log(results)
     });
   }
 
@@ -74,11 +78,16 @@ class App extends Component {
       <div className="App">
         <SearchBar onSearch={this.search} />
         <div className="App-playlist">
-          <SearchResults
+            <SearchResults
+              searchResults={this.state.searchResults}
+              onAdd={this.addTrack}
+              onPlay={this.playTrack}
+            />
+          {/* <SearchResults
             searchResults={this.state.searchResults}
             onAdd={this.addTrack}
             onPlay={this.playTrack}
-          />
+          /> */}
           <Playlist
             playlistName={this.state.playlistName}
             playlistTracks={this.state.playlistTracks}

@@ -10,6 +10,7 @@ import './searchResult.css'
                         tracks={ this.props.searchResults } 
                         onAdd={ this.props.onAdd }
                         isRemoval={false}
+                        onPlay={this.props.onPlay}
                         />
                   </div> 
   
